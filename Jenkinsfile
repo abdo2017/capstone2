@@ -2,8 +2,6 @@ pipeline {
      agent any
   environment{
     AWS_DEFAULT_REGION = "us-west-2"
-    registryCredential = 'dockerhub_id' 
-    registryCredential= 'docker-cred'
   }
    stages {
        stage('Build') {

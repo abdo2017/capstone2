@@ -2,7 +2,8 @@ pipeline {
      agent any
   environment{
     AWS_DEFAULT_REGION = "us-west-2"
-    DOCKERHUB_CREDENTIALS=credentials('docker-cred')
+    registryCredential = 'dockerhub_id' 
+    registryCredential= 'docker-cred'
   }
    stages {
        stage('Build') {
@@ -22,8 +23,10 @@ pipeline {
        }
        stage('Push Docker Image') {
             steps {
+              docker.withRegistry( '', registryCredential ) { 
                 sh "sudo docker tag capstone-project-cloud-devops abdoesam2011/capstone-project-cloud-devops"
                 sh 'sudo docker push abdoesam2011/capstone-project-cloud-devops'
+              }
             }
        }
        stage('Deploying') {

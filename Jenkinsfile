@@ -2,7 +2,7 @@ pipeline {
      agent any
   environment{
     AWS_DEFAULT_REGION = "us-west-2"
-    DOCKERHUB_CREDENTIALS = credentials("docker-cred")
+    // DOCKERHUB_CREDENTIALS = credentials("docker-cred")
   }
    stages {
        stage('Build') {
@@ -21,16 +21,18 @@ pipeline {
             }
        }
 
-       stage("docker login") {
-        steps {
-          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-        }
+       // stage("docker login") {
+       //  steps {
+       //    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+       //  }
        }
        stage('Push Docker Image') {
             steps {
+                withDockerRegistry([url: "", credentialsId: "docker-cred"]){
               // docker.withRegistry( '', registryCredential ) { 
                 sh "sudo docker tag capstone-project-cloud-devops abdoesam2011/capstone-project-cloud-devops"
                 sh 'sudo docker push abdoesam2011/capstone-project-cloud-devops'
+              }
             }
        }
        stage('Deploying') {

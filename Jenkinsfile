@@ -5,15 +5,6 @@ pipeline {
     DOCKERHUB_CREDENTIALS=credentials('docker-cred')
   }
    stages {
-        stage("install deps") {
-      steps {
-        // install hadolint
-        sh 'sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64'
-        sh 'sudo chmod +x /bin/hadolint'
-        // install tidy html
-        sh 'sudo apt install tidy --yes'
-      }
-    }
        stage('Build') {
             steps {
                 sh 'echo Building...'

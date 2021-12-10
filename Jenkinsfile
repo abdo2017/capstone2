@@ -23,7 +23,8 @@ pipeline {
        }
        stage('Push Docker Image') {
             steps {
-              docker.withRegistry( '', registryCredential ) { 
+              withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: '6c4757a9-b9d9-4b12-9565-70841d0fc292', usernameVariable: 'abdoesam2011')]) {
+              // docker.withRegistry( '', registryCredential ) { 
                 sh "sudo docker tag capstone-project-cloud-devops abdoesam2011/capstone-project-cloud-devops"
                 sh 'sudo docker push abdoesam2011/capstone-project-cloud-devops'
               }

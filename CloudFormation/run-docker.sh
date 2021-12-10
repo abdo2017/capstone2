@@ -2,8 +2,11 @@
 
 
 
-docker build -t capstone-app .
+sudo docker build -t capstone-app .
 
-docker images
+sudo docker images
 
-docker run -p 80:80 capstone-app
+sudo docker run -p 80:80 capstone-app
+
+
+# aws eks --region us-west-2 update-kubeconfig --name CapstoneEKS-UEdB71F8J2DZ

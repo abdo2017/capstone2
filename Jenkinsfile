@@ -30,8 +30,8 @@ pipeline {
             steps {
                 withDockerRegistry([url: "", credentialsId: "docker-cred"]){
               // docker.withRegistry( '', registryCredential ) { 
-                sh "sudo docker tag capstone-project-cloud-devops abdoesam2011/capstone-project-cloud-devops"
-                sh 'sudo docker push abdoesam2011/capstone-project-cloud-devops'
+                sh "docker tag capstone-project-cloud-devops abdoesam2011/capstone-project-cloud-devops"
+                sh 'docker push abdoesam2011/capstone-project-cloud-devops'
               }
             }
        }
